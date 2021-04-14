@@ -1,0 +1,6 @@
+bilal.oksuz|123456|notMail
+""|123456|nullMail
+bilal.oksuz|""|nullPassword
+Qvwdtaaz@Gmail.Com|Asd1234|validUser
+Qvwdtaaz@Gmail.Com|Asd12345|invalidPass
+Qvwdtaaz1@Gmail.Com|Asd1234|invalidMail

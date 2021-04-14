@@ -1,0 +1,22 @@
+alerts:
+  TrendyolAlerts:
+  SendNotification: false
+  SlackAPI: https://slack.com/api
+  APIToken:
+  UploadFile: /files.upload
+
+trendyolUrl:
+  BaseUrl: https://www.trendyol.com
+  WomenButik: /butik/liste/kadın
+  MenButik: /butik/liste/erkek
+  Login: /giris
+
+gridConfiguration:
+  gridFeature: true
+  gridURL: http://10.6.0.9:4444/ #docker container içinden koşulacaksa docker-compose.yaml içindeki selenium-hub.networks.vpcbr.ipv4_address yazılmalı
+
+books:
+  URL: http://localhost/
+  getBook: api/books/
+  getBookById: api/books/%s/
+  putBook: api/books/
