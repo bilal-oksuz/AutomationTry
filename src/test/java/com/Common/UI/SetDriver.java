@@ -1,6 +1,7 @@
 package com.Common.UI;
 
 import com.Common.Base.Config;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -110,7 +111,7 @@ public class SetDriver
     {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         LoggingPreferences loggingPreferences=new LoggingPreferences();
-
+        WebDriverManager webDriverManager;
         switch (platform)
         {
             case "windows":
@@ -129,41 +130,49 @@ public class SetDriver
         switch (browser)
         {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver",driverPath);
+                //System.setProperty("webdriver.chrome.driver",driverPath);
+                webDriverManager=WebDriverManager.chromedriver();
                 loggingPreferences.enable(LogType.PERFORMANCE,Level.ALL);
                 desiredCapabilities.setCapability("goog:loggingPrefs", loggingPreferences);
                 desiredCapabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.CHROME);
                 if (!config.getGridFeature())
                 {
+                    webDriverManager.setup();
                     ChromeOptions options = new ChromeOptions();
                     options.merge(desiredCapabilities);
                     driver=new ChromeDriver(options);
                 }
                 break;
             case "firefox":
-                driverPath=driverPath.replace("firefox","gecko");
-                System.setProperty("webdriver.gecko.driver",driverPath);
+//                driverPath=driverPath.replace("firefox","gecko");
+//                System.setProperty("webdriver.gecko.driver",driverPath);
+                webDriverManager=WebDriverManager.firefoxdriver();
                 desiredCapabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.FIREFOX);
                 if (!config.getGridFeature())
                 {
+                    webDriverManager.setup();
                     FirefoxOptions firefoxOptions=new FirefoxOptions();
                     firefoxOptions.merge(desiredCapabilities);
                     driver= new FirefoxDriver(firefoxOptions);
                 }
                 break;
             case "opera":
+                webDriverManager=WebDriverManager.operadriver();
                 desiredCapabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.OPERA_BLINK);
                 if (!config.getGridFeature())
                 {
+                    webDriverManager.setup();
                     OperaOptions operaOptions=new OperaOptions();
                     operaOptions.merge(desiredCapabilities);
                     driver= new OperaDriver(operaOptions);
                 }
                 break;
             case "edge":
+                webDriverManager=WebDriverManager.edgedriver();
                 desiredCapabilities.setCapability(CapabilityType.BROWSER_NAME, BrowserType.EDGE);
                 if (!config.getGridFeature())
                 {
+                    webDriverManager.setup();
                     EdgeOptions edgeOptions=new EdgeOptions();
                     edgeOptions.merge(desiredCapabilities);
                     driver= new EdgeDriver(edgeOptions);

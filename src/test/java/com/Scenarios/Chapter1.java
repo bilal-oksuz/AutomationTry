@@ -35,7 +35,7 @@ public class Chapter1
     {
         /* localden koşum için gerekli datalar
         Config config=new Config().config("production");
-        SetDriver setDriver=new SetDriver("chrome","linux");
+        SetDriver setDriver=new SetDriver("chrome","macos");
         */
 
         mongoDB = new MongoDB();
